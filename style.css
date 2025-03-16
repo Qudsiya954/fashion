@@ -142,20 +142,44 @@
   
   .team-section {
     background-color: var(--bg-color);
+    padding: 50px 0;
+  }
+  
+  .team-section .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
   }
   
   .team-card {
+    flex: 1;
+    max-width: 85%; /* Ensures three cards per row */
     text-align: center;
     padding: 2rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    
   }
+  
+  .team-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
   
   .team-card:hover {
     transform: translateY(-10px);
   }
+  
   
   /* Contact Page Styles */
   .contact-section {
@@ -238,4 +262,92 @@
     .swiper-slide p {
         margin-top: 10px;
     }
-    
+
+/* 🌟 Search Bar Centered & Aligned */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 800px; /* Keeps it aligned */
+  background: white;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input & Button Proper Alignment */
+.search-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  border-right: none; /* Removes border between input & button */
+}
+
+/* Fix Search Button */
+.search-btn {
+  background-color: #ff4081;
+  color: white;
+  border: 1px solid #ff4081;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn:hover {
+  background-color: #d81b60;
+}
+/* 🌟 Boutique Card Centered */
+.boutique-card {
+  width: 90%;
+  max-width: 1200px; /* Keeps it compact */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin: 0 auto; /* Ensures perfect centering */
+}
+
+/* Ensure Image and Content Align Well */
+.boutique-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.rating {
+  font-size: 18px;
+  color: #FFD700;
+  margin-bottom: 6px;
+}
+
+.rating-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.address {
+  font-weight: bold;
+  color: #444;
+}
