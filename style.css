@@ -263,57 +263,30 @@
         margin-top: 10px;
     }
 
-/* 🌟 Search Bar Centered & Aligned */
-.search-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-  width: 100%;
-}
 
-.search-form {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  max-width: 800px; /* Keeps it aligned */
-  background: white;
-  padding: 5px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* Input & Button Proper Alignment */
-.search-input {
-  flex-grow: 1;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  font-size: 16px;
-  outline: none;
-  border-right: none; /* Removes border between input & button */
-}
-
-/* Fix Search Button */
-.search-btn {
-  background-color: #ff4081;
-  color: white;
-  border: 1px solid #ff4081;
-  padding: 12px 20px;
-  font-size: 16px;
-  transition: 0.3s;
-  white-space: nowrap;
-  cursor: pointer;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-btn:hover {
-  background-color: #d81b60;
-}
+    .search-input, .search-btn {
+      height: 50px; 
+      margin-left: 160px;/* Ensuring same height */
+    }
+    
+    .search-input {
+      flex-grow: 1;
+      max-width: calc(100% - 100px); /* Adjusting input width */
+    }
+    
+    .d-flex {
+      width: 80%;
+    }
+    .search-btn {
+      margin-bottom: 15px;
+      background-color: var(--primary-color);
+    }
+    .search-btn:hover {
+      color: #000;
+    }
+    
+    
 /* 🌟 Boutique Card Centered */
 .boutique-card {
   width: 90%;
@@ -350,4 +323,17 @@
 .address {
   font-weight: bold;
   color: #444;
+}
+
+
+/* alert message */
+.custom-alert {
+  position: fixed;
+  top: 80px;
+  right: 25px;
+  z-index: 1111;
+}
+
+.a-contact {
+  color: var(--text-color);
 }

@@ -43,7 +43,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email</h4>
-                                <p>qudsiyas954@gmail.com</p>
+                             <a href="mailto: qudsiyas954@gmail.com" class="text-decoration-none a-contact" >qudsiyas954@gmail.com</a>   
                             </div>
                         </div>
                         <div class="social-links mt-4">
@@ -55,26 +55,43 @@
                 </div>
                 <div class="col-md-6" data-aos="fade-left">
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" method="POST">
                             <div class="form-group mb-4">
-                                <input type="text" class="form-control" placeholder="Your Name" required>
+                                <input type="text" class="form-control" placeholder="Your Name" name="name" required>
                             </div>
                             <div class="form-group mb-4">
-                                <input type="email" class="form-control" placeholder="Your Email" required>
+                                <input type="email" class="form-control" placeholder="Your Email" name="email" required>
                             </div>
                             <div class="form-group mb-4">
-                                <input type="text" class="form-control" placeholder="Subject" required>
+                                <input type="text" class="form-control" placeholder="Subject" name="subject" required>
                             </div>
                             <div class="form-group mb-4">
-                                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Your Message" name="message" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-custom">Send Message</button>
+                            <button type="submit" name="send" class="btn btn-custom">Send Message</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+<?php
+if(isset($_POST['send'])) {
+    $frm_data = filteration($_POST);
+    $q = "INSERT INTO `contact`(`name`, `email`, `subject`, `message`) VALUES (?,?,?,?)";
+    $values = [$frm_data['name'], $frm_data['email'], $frm_data['subject'], $frm_data['message']];
+    $res = insert($q,$values,"ssss"); 
+    if($res==1) {
+        alert('success', 'Mail Send');
+    } else {
+        alert('error', 'Mail Not Send Server Down');
+    }
+
+}
+
+
+?>
 
    
 
