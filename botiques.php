@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Fashion Recomendation-Contact</title>
+  <title>Online Fashion Recomendation-Botiques</title>
   <?php require('inc/links.php') ?>
 </head>
 

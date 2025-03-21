@@ -82,25 +82,25 @@ require('essentials.php');
                      <div class="container-fluid">
                          <div class="row">
                              <div class="col-md-6 ps-0 mb-3">
-                                 <label for="email" class="form-label">Name</label>
-                                 <input type="text" name="name" id="email" class="form-control shadow-none" required>
+                                 <label class="form-label">Name</label>
+                                 <input type="text" name="name" class="form-control shadow-none" required>
                              </div>
                              <div class="col-md-6 p-0 mb-3">
-                                 <label for="email" class="form-label">Email</label>
-                                 <input type="email" name="email" id="email" class="form-control shadow-none" required>
+                                 <label  class="form-label">Email</label>
+                                 <input type="email" name="email" class="form-control shadow-none" required>
                              </div>
                              <div class="col-md-6 ps-0 mb-3">
-                                 <label for="email" class="form-label">Phone Number</label>
-                                 <input type="number" name="phonenum" id="email" class="form-control shadow-none" required>
+                                 <label  class="form-label">Phone Number</label>
+                                 <input type="number" name="phonenum"  class="form-control shadow-none" required>
                              </div>
                              <div class="col-md-6 p-0 mb-3">
-                                 <label for="email" class="form-label">Picture</label>
-                                 <input type="file" name="profile" accept=".jpg, .jpeg, .png, .webp" id="email" class="form-control shadow-none" required>
+                                 <label  class="form-label">Picture</label>
+                                 <input type="file" name="profile" accept=".jpg, .jpeg, .png, .webp" class="form-control shadow-none" required>
                              </div>
 
                              <div class="col-md-6 ps-0 mb-3">
-                                 <label for="gender" class="form-label">Gender</label>
-                                 <select name="gender" id="gender" class="form-control shadow-none" required>
+                                 <label class="form-label">Gender</label>
+                                 <select name="gender" class="form-control shadow-none" required>
                                      <option value="" selected disabled>Select Gender</option>
                                      <option value="male">Male</option>
                                      <option value="female">Female</option>
@@ -109,20 +109,20 @@ require('essentials.php');
                              </div>
 
                              <div class="col-md-6 p-0 mb-3">
-                                 <label for="email" class="form-label">Date of Birth</label>
-                                 <input type="date" id="email" name="dob" class="form-control shadow-none" required>
+                                 <label class="form-label">Date of Birth</label>
+                                 <input type="date"  name="dob" class="form-control shadow-none" required>
                              </div>
                              <div class="col-md-6 ps-0 mb-3">
-                                 <label for="email" class="form-label">Password</label>
-                                 <input type="password" id="email" name="pass" class="form-control shadow-none" required>
+                                 <label class="form-label">Password</label>
+                                 <input type="password"  name="pass" class="form-control shadow-none" required>
                              </div>
                              <div class="col-md-6 p-0 mb-3">
-                                 <label for="email" class="form-label">Confirm Password</label>
-                                 <input type="password" id="email" name="cpass" class="form-control shadow-none" required>
+                                 <label  class="form-label">Confirm Password</label>
+                                 <input type="password"  name="cpass" class="form-control shadow-none" required>
                              </div>
                          </div>
                          <div class="text-center">
-                             <button class="btn btn-dark shadow-none my-">Register</button>
+                             <button class="btn btn-dark shadow-none my-3" type="submit">Register</button>
                          </div>
                      </div>
 

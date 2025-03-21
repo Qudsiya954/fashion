@@ -1,7 +1,7 @@
 <?php
 $hname = 'localhost';
 $uname = 'root';
-$pass = '';  // Password should be before the database name
+$pass = '';  
 $db = 'fashion';
 $port = 3307;
 
@@ -11,80 +11,60 @@ if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// filteration of data
-
-function filteration($data) {
-    foreach($data as $key => $value) {
-        $value = trim($value);
-        $value = stripslashes($value);
-        $value =  strip_tags($value);
-        $value = htmlspecialchars($data[$key]);
-       $data[$key] = $value;
-        
-
+if (!function_exists('filteration')) {
+    function filteration($data) {
+        foreach($data as $key => $value) {
+            $value = trim($value);
+            $value = stripslashes($value);
+            $value = strip_tags($value);
+            $value = htmlspecialchars($value);
+            $data[$key] = $value;
+        }
+        return $data;
     }
-    return $data;
 }
 
-// query statements
-
-function selectAll($table) 
-{
-  $con = $GLOBALS['con'];
-  $res = mysqli_query($con,"SELECT * FROM $table");
-  return $res;
-}
-
-// select query
-
-function select($sql, $values,$datatypes) {
+function select($sql, $values, $datatypes) {
     $con = $GLOBALS['con'];
-    if($stmt = mysqli_prepare($con, $sql)) {
-        mysqli_stmt_bind_param($stmt, $datatypes,...$values);
-        if(mysqli_stmt_execute($stmt)) {
-           $res=  mysqli_stmt_get_result($stmt);
+    if ($stmt = mysqli_prepare($con, $sql)) {
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        if (mysqli_stmt_execute($stmt)) {
+           $res = mysqli_stmt_get_result($stmt);
            mysqli_stmt_close($stmt);
            return $res;
         } else {
             mysqli_stmt_close($stmt);
-            die ("Query cannot be executed-Select");
+            die ("Query cannot be executed - Select");
         }
-       
     } else {
-        die("Query cannot be execeuted - Select");
+        die("Query cannot be executed - Select");
     }
 }
 
-// update query
-function update($sql, $values,$datatypes) {
+function update($sql, $values, $datatypes) {
     $con = $GLOBALS['con'];
-    if($stmt = mysqli_prepare($con, $sql)) {
-
-        mysqli_stmt_bind_param($stmt, $datatypes,...$values);
-        if(mysqli_stmt_execute($stmt)) {
-           $res=  mysqli_stmt_affected_rows($stmt);
+    if ($stmt = mysqli_prepare($con, $sql)) {
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        if (mysqli_stmt_execute($stmt)) {
+           $res = mysqli_stmt_affected_rows($stmt);
            mysqli_stmt_close($stmt);
            return $res;
         } else {
             mysqli_stmt_close($stmt);
             die ("Query cannot be executed - Update");
         }
-       
     } else {
-        die("Query cannot be execeuted - Update");
+        die("Query cannot be executed - Update");
     }
 }
 
-// insert query
 function insert($sql, $values, $datatypes) {
     $con = $GLOBALS['con'];
-    
     if ($stmt = mysqli_prepare($con, $sql)) {
         mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
-        
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_close($stmt);
-            return true; // Return true to indicate success
+            return true;
         } else {
             mysqli_stmt_close($stmt);
             die("Query cannot be executed - Insert");
@@ -93,28 +73,4 @@ function insert($sql, $values, $datatypes) {
         die("Query cannot be executed - Insert");
     }
 }
-
-
-// delete query
-function delete($sql, $values,$datatypes) {
-    $con = $GLOBALS['con'];
-    if($stmt = mysqli_prepare($con, $sql)) {
-        mysqli_stmt_bind_param($stmt, $datatypes,...$values);
-        if(mysqli_stmt_execute($stmt)) {
-           $res=  mysqli_stmt_get_result($stmt);
-           mysqli_stmt_close($stmt);
-           return $res;
-        } else {
-            mysqli_stmt_close($stmt);
-            die ("Query cannot be executed-Delete");
-        }
-       
-    } else {
-        die("Query cannot be execeuted - Delete");
-    }
-}
-
-
-
-
 ?>
