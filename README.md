@@ -38,7 +38,8 @@ Mac/Linux: Use the terminal
 
 2️⃣ Clone the Repository
 
-https://github.com/Qudsiya954/fashion.git
+
+ git clone https://github.com/Qudsiya954/fashion.git
 
 3️⃣ Navigate to the Project Directory
 
