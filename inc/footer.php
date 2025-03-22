@@ -30,7 +30,6 @@
 
 
  <script>
-   
    function alert(type, msg, position = 'body') {
      let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
      let element = document.createElement('div')
@@ -52,58 +51,100 @@
    }
 
    function remAlert() {
-     document.getElementById('alert')[0].remove();
+     let alertBox = document.getElementById('alert');
+     if (alertBox) {
+       alertBox.remove();
+     }
    }
 
 
-  //  register form backend
+
+   //  register form backend
 
    let register_form = document.getElementById('register-form')
    register_form.addEventListener('submit', (e) => {
-         e.preventDefault()
-         let data = new FormData(register_form);
+     e.preventDefault()
+     let data = new FormData(register_form);
 
-         data.append('name', register_form.elements['name'].value)
-         data.append('email', register_form.elements['email'].value)
-         data.append('phonenum', register_form.elements['phonenum'].value)
-         data.append('gender', register_form.elements['gender'].value)
+     data.append('name', register_form.elements['name'].value)
+     data.append('email', register_form.elements['email'].value)
+     data.append('phonenum', register_form.elements['phonenum'].value)
+     data.append('gender', register_form.elements['gender'].value)
 
-         data.append('dob', register_form.elements['dob'].value)
-         data.append('pass', register_form.elements['pass'].value)
-         data.append('cpass', register_form.elements['cpass'].value)
-         data.append('profile', register_form.elements['profile'].files[0])
+     data.append('dob', register_form.elements['dob'].value)
+     data.append('pass', register_form.elements['pass'].value)
+     data.append('cpass', register_form.elements['cpass'].value)
+     data.append('profile', register_form.elements['profile'].files[0])
 
-         data.append('register', '')
-         var myModal = document.getElementById('registerModal');
-         var modal = bootstrap.Modal.getInstance(myModal);
-         modal.hide();
+     data.append('register', '')
+     var myModal = document.getElementById('registerModal');
+     var modal = bootstrap.Modal.getInstance(myModal);
+     modal.hide();
 
-         let xhr = new XMLHttpRequest();
-         xhr.open('POST', 'ajax/login_register.php', true);
+     let xhr = new XMLHttpRequest();
+     xhr.open('POST', 'ajax/login_register.php', true);
 
-         xhr.onload = function() {
-             if (this.responseText === 'pass_mismatched') {
-                 alert('error', "Password mismatch")
-             } else if (this.responseText === 'email_already') {
-                 alert('error', "Email already exists")
-             } else if (this.responseText === 'phone_already') {
-                 alert('error', "Phone number already exists")
-             } else if (this.responseText === 'inv_image') {
-                 alert('error', "Only jpeg, jpg, webp images allowed")
-             } else if (this.responseText === 'upd_failed') {
-                 alert('error', "Failed to upload image")
-             } else if (this.responseText === 'mail_failed') {
-                 alert('error', "Failed to send mail")
-             } else if (this.responseText === 'ins_failed') {
-                 alert('error', "Failed to insert data")
-             } else {
-                 alert('success', "Registration successful!!")
-                 register_form.reset();
-             }
-         }
-         xhr.send(data);
+     xhr.onload = function() {
+       let response = this.responseText.trim(); // Trim spaces
 
-     })
+       if (response === 'pass_mismatched') {
+         alert('error', "Password mismatch");
+       } else if (response === 'email_already') {
+         alert('error', "Email already exists");
+       } else if (response === 'phone_already') {
+         alert('error', "Phone number already exists");
+       } else if (response === 'inv_image') {
+         alert('error', "Only jpeg, jpg, webp images allowed");
+       } else if (response === 'upd_failed') {
+         alert('error', "Failed to upload image");
+       } else if (response === 'mail_failed') {
+         alert('error', "Failed to send mail");
+       } else if (response === 'ins_failed') {
+         alert('error', "Failed to insert data");
+       } else {
+         alert('success', "Registration successful!!");
+         register_form.reset();
+       }
+     };
 
-  
+     xhr.send(data);
+
+   })
+
+
+   let login_form = document.getElementById('login-form');
+
+   login_form.addEventListener('submit', (e) => {
+     e.preventDefault();
+
+     let data = new FormData(login_form);
+     data.append('login', ''); // Required for PHP condition
+
+     // Hide modal after submitting form
+     let myModal = document.getElementById('loginModal');
+     let modal = bootstrap.Modal.getInstance(myModal);
+     modal.hide();
+
+     // Create AJAX request
+     let xhr = new XMLHttpRequest();
+     xhr.open('POST', 'ajax/login_register.php', true);
+
+     xhr.onload = function() {
+       let response = this.responseText.trim(); // Remove any accidental spaces
+
+       if (response === 'inv_email_mob') {
+         alert('error',"Invalid Email or Phone Number");
+       } else if (response === 'invalid_pass') {
+         alert('error',"Incorrect Password");
+       } else if (response === '1') { // Login successful
+         window.location.reload();
+         login_form.reset(); // Refresh to load session data
+       } else {
+         console.log("Unexpected response:", response); // Debugging
+         alert('error',"Login failed! Please try again.");
+       }
+     };
+
+     xhr.send(data);
+   });
  </script>
